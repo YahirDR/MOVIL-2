@@ -91,6 +91,21 @@ fun BluromaticScreen(blurViewModel: BlurViewModel = viewModel(factory = BlurView
                 .padding(dimensionResource(R.dimen.padding_medium))
         )
     }
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        // REMOVE
+        // Button(
+        //     onClick = onStartClick,
+        //     modifier = Modifier.fillMaxWidth()
+        // ) {
+        //     Text(stringResource(R.string.start))
+        // }
+        // ADD
+        when (blurUiState) {
+        }
+    }
 }
 
 @Composable

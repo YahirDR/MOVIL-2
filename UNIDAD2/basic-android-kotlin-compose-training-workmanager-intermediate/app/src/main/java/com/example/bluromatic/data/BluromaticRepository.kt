@@ -18,9 +18,18 @@ package com.example.bluromatic.data
 
 import androidx.work.WorkInfo
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.mapNotNull
 
 interface BluromaticRepository {
     val outputWorkInfo: Flow<WorkInfo?>
     fun applyBlur(blurLevel: Int)
     fun cancelWork()
 }
+override val outputWorkInfo: Flow<WorkInfo?> =
+    workManager.getWorkInfosByTagLiveData(TAG_OUTPUT).asFlow().mapNotNull {
+        if (it.isNotEmpty()) it.first() else null
+    }
+override val outputWorkInfo: Flow<WorkInfo> = interface BluromaticRepository {
+    //    val outputWorkInfo: Flow<WorkInfo?>
+    val outputWorkInfo: Flow<WorkInfo>
+
