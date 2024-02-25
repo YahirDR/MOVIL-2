@@ -99,5 +99,11 @@ class WorkManagerBluromaticRepository(context: Context) : BluromaticRepository {
     fun cancelWork() {
         bluromaticRepository.cancelWork()
     }
+    override fun applyBlur(blurLevel: Int) {
+        // ...
+
+        val constraints = Constraints.Builder()
+            .setRequiresBatteryNotLow(true)
+            .build()
 }
 

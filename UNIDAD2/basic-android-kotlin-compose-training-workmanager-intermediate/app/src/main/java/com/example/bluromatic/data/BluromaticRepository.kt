@@ -35,4 +35,7 @@ override val outputWorkInfo: Flow<WorkInfo> = interface BluromaticRepository {
 }
 override fun cancelWork() {
     workManager.cancelUniqueWork(IMAGE_MANIPULATION_WORK_NAME)
+    blurBuilder.setInputData(createInputDataForWorkRequest(blurLevel, imageUri))
+
+    blurBuilder.setConstraints(constraints) // Add this code
 }
