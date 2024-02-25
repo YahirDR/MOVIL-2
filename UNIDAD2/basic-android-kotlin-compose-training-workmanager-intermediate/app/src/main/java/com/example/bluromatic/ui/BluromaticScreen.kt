@@ -65,6 +65,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bluromatic.R
 import com.example.bluromatic.data.BlurAmount
 import com.example.bluromatic.ui.theme.BluromaticTheme
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import com.example.bluromatic.KEY_IMAGE_URI
 
 @Composable
 fun BluromaticScreen(blurViewModel: BlurViewModel = viewModel(factory = BlurViewModel.Factory)) {
@@ -104,9 +107,35 @@ fun BluromaticScreen(blurViewModel: BlurViewModel = viewModel(factory = BlurView
         // }
         // ADD
         when (blurUiState) {
+            is BlurUiState.Complete -> {
+                Button(onStartClick) { Text(stringResource(R.string.start)) }
+                // Add a spacer and the new button with a "See File" label
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.padding_small)))
+                FilledTonalButton({ onSeeFileClick(blurUiState.outputUri) })
+                { Text(stringResource(R.string.see_file)) }
+            }.map { info ->
+            val outputImageUri = info.outputData.getString(KEY_IMAGE_URI)
+            when {.map { info ->
+                val outputImageUri = info.outputData.getString(KEY_IMAGE_URI)
+                when {
+                    info.state.isFinished && !outputImageUri.isNullOrEmpty() -> {
+                        BlurUiState.Complete(outputUri = outputImageUri)
+                    }
+                    info.state == WorkInfo.State.CANCELLED -> {
         }
+                    BlurActions(
+                        blurUiState = blurUiState,
+                        onStartClick = { applyBlur(selectedValue) },
+                        // New lambda code runs when See File button is clicked
+                        onSeeFileClick = { currentUri ->
+                            showBlurredImage(context, currentUri)
+                        },
+                        onCancelClick = { cancelWork() },
+                        modifier = Modifier.fillMaxWidth()
+                    )
     }
 }
+
 
 @Composable
 fun BluromaticScreenContent(
