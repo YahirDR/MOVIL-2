@@ -68,6 +68,7 @@ import com.example.bluromatic.ui.theme.BluromaticTheme
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import com.example.bluromatic.KEY_IMAGE_URI
+import androidx.work.Constraints
 
 @Composable
 fun BluromaticScreen(blurViewModel: BlurViewModel = viewModel(factory = BlurViewModel.Factory)) {
@@ -132,6 +133,42 @@ fun BluromaticScreen(blurViewModel: BlurViewModel = viewModel(factory = BlurView
                         },
                         onCancelClick = { cancelWork() },
                         modifier = Modifier.fillMaxWidth()
+                    )
+                        fun BluromaticScreen(blurViewModel: BlurViewModel = viewModel(factory = BlurViewModel.Factory)) {
+                    val uiState by blurViewModel.blurUiState.collectAsStateWithLifecycle()
+                    val layoutDirection = LocalLayoutDirection.current
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .statusBarsPadding()
+                            .padding(
+                                start = WindowInsets.safeDrawing
+                                    .asPaddingValues()
+                                    .calculateStartPadding(layoutDirection),
+                                end = WindowInsets.safeDrawing
+                                    .asPaddingValues()
+                                    .calculateEndPadding(layoutDirection)
+                            )
+                    ) {
+                        BluromaticScreenContent(
+                            blurUiState = uiState,
+                            blurAmountOptions = blurViewModel.blurAmount,
+                            applyBlur = blurViewModel::applyBlur,
+                            cancelWork = {},
+                            modifier = Modifier
+                                .verticalScroll(rememberScrollState())
+                                .padding(dimensionResource(R.dimen.padding_medium))
+                        )
+                    }
+                }
+                    BluromaticScreenContent(
+                        blurUiState = uiState,
+                        blurAmountOptions = blurViewModel.blurAmount,
+                        applyBlur = blurViewModel::applyBlur,
+                        cancelWork = blurViewModel::cancelWork,
+                        modifier = Modifier
+                            .verticalScroll(rememberScrollState())
+                            .padding(dimensionResource(R.dimen.padding_medium))
                     )
     }
 }

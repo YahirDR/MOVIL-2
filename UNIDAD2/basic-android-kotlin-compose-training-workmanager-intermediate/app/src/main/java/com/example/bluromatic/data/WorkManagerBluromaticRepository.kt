@@ -96,4 +96,8 @@ class WorkManagerBluromaticRepository(context: Context) : BluromaticRepository {
         builder.putString(KEY_IMAGE_URI, imageUri.toString()).putInt(KEY_BLUR_LEVEL, blurLevel)
         return builder.build()
     }
+    fun cancelWork() {
+        bluromaticRepository.cancelWork()
+    }
 }
+

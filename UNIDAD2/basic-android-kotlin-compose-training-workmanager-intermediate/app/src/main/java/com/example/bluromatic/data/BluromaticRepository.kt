@@ -32,4 +32,7 @@ override val outputWorkInfo: Flow<WorkInfo?> =
 override val outputWorkInfo: Flow<WorkInfo> = interface BluromaticRepository {
     //    val outputWorkInfo: Flow<WorkInfo?>
     val outputWorkInfo: Flow<WorkInfo>
-
+}
+override fun cancelWork() {
+    workManager.cancelUniqueWork(IMAGE_MANIPULATION_WORK_NAME)
+}
