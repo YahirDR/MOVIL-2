@@ -31,7 +31,8 @@ import com.example.bluromatic.workers.CleanupWorker
 import com.example.bluromatic.workers.SaveImageToFileWorker
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-
+import androidx.work.ExistingWorkPolicy
+import com.example.bluromatic.IMAGE_MANIPULATION_WORK_NAME
 class WorkManagerBluromaticRepository(context: Context) : BluromaticRepository {
 
     private var imageUri: Uri = context.getImageUri()
@@ -63,6 +64,12 @@ class WorkManagerBluromaticRepository(context: Context) : BluromaticRepository {
         // Actually start the work
         continuation.enqueue()
     }
+    var continuation = workManager
+        .beginUniqueWork(
+            IMAGE_MANIPULATION_WORK_NAME,
+            ExistingWorkPolicy.REPLACE,
+            OneTimeWorkRequest.from(CleanupWorker::class.java)
+        )
 
     /**
      * Cancel any ongoing WorkRequests
