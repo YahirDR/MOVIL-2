@@ -1,14 +1,3 @@
 <resources>
-    <string name="app_name">BroadcastReceiverPrueba2</string>
-    <string name="title_activity_settings">Configuración</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="btn_send">Enviar</string>
-    <string name="switch_listen_phone_state">Escuchar estado de la telefonía</string>
-    <string name="toast_listening">Escuchando</string>
-    <string name="toast_not_listening">Ya no estoy escuchando</string>
-    <string name="toast_incoming_call">Llamada entrante</string>
-    <string name="toast_call_ended">Llamada finalizada</string>
-    <string name="toast_registered_number">Número registrado</string>
-    <string name="toast_calling_registered_number">Llamando al número registrado</string>
-    <string name="toast_calling_non_registered_number">Llamando a un número que no está registrado</string>
+    <string name="app_name">Broadcast</string>
 </resources>
