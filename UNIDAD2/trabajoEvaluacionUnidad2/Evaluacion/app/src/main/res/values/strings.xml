@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AutenticacionYConsulta</string>
+    <string name="title_activity_info_student">InfoStudent</string>
+    <string name="tipoUsuario">Usuario</string>
+    <string name="alumno">ALUMNO</string>
+    <string name="docente">DOCENTE</string>
+    <string name="principal">Sicenet</string>
+    <string name="kardex">Kardex</string>
+    <string name="calificacionParcial">Parciales</string>
+    <string name="calificacionFinal">Finales</string>
+    <string name="horario">Horario</string>
+    <string name="title_activity_kardex">kardex</string>
+    <string name="title_activity_parciales">Parciales</string>
+    <string name="title_activity_finales">Finales</string>
+    <string name="title_activity_horario">Horario</string>
+</resources>
